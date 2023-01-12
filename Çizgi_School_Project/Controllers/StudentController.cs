@@ -35,5 +35,24 @@ namespace Çizgi_School_Project.Controllers
             return RedirectToAction("index");
 
         }
+        [HttpGet]
+        public ActionResult UpdateStudent(int id) 
+        {
+            var values = db.TblStudent.Find(id);
+            return View(values);
+        }
+        [HttpPost]
+        public ActionResult UpdateStudent(TblStudent p)
+        {
+            var values = db.TblStudent.Find(p.StudentId);
+            values.Name = p.Name;
+            values.SurName = p.SurName;
+            values.Mail = p.Mail;
+            values.İmage = p.İmage;
+            values.Number = p.Number;
+            values.PhoneNumbar = p.PhoneNumbar;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
